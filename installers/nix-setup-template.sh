@@ -51,7 +51,14 @@ chmod +x ../python $PYTHON_MAJOR $PYTHON_MAJOR_DOT_MINOR $PYTHON_MAJORMINOR pyth
 
 echo "Upgrading pip..."
 export PIP_ROOT_USER_ACTION=ignore
-./python -m ensurepip
+
+if ./python -m pip --version >/dev/null 2>&1; then
+  echo "pip is already installed, skipping ensurepip."
+else
+  echo "pip not found, running ensurepip..."
+  ./python -m ensurepip
+fi
+
 ./python -m pip install --upgrade --force-reinstall pip --disable-pip-version-check --no-warn-script-location
 
 echo "Create complete file"
