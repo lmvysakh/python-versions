@@ -51,6 +51,7 @@ chmod +x ../python $PYTHON_MAJOR $PYTHON_MAJOR_DOT_MINOR $PYTHON_MAJORMINOR pyth
 
 echo "Upgrading pip..."
 export PIP_ROOT_USER_ACTION=ignore
+
 if [ -d "$(./python -c 'import site; print(site.getsitepackages()[0])')/pip" ]; then
   echo "pip directory found in site-packages, skipping ensurepip."
 else
